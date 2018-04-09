@@ -17,12 +17,12 @@ public class UsersController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/users")
+    @GetMapping("/")
     public Iterable<User> findAllUsers() {
         return userRepository.findAll();
     }
 
-    @GetMapping("/users/{userId}")
+    @GetMapping("/{userId}")
     public User findUserById(@PathVariable Long userId) throws NotFoundException {
 
         User foundUser = userRepository.findOne(userId);
@@ -36,7 +36,7 @@ public class UsersController {
 
     // Barrowed @RequestParam from this artiicle
     //https://www.journaldev.com/3358/spring-requestmapping-requestparam-pathvariable-example
-    @GetMapping("/users/search")
+    @GetMapping("/search")
     public User findUserByUserName(@RequestParam("userName") String userName) throws NotFoundException {
         User foundUser = userRepository.findByUserName(userName);
         if(foundUser == null){
@@ -46,18 +46,18 @@ public class UsersController {
         return foundUser;
     }
 
-    @PostMapping("/users")
+    @PostMapping("/")
     public User createNewUser(@RequestBody User userRequest){
         return userRepository.save(userRequest);
     }
 
-    @DeleteMapping("/users/{userId}")
+    @DeleteMapping("/{userId}")
     public HttpStatus deleteUserById(@PathVariable Long userId) throws EmptyResultDataAccessException {
         userRepository.delete(userId);
         return HttpStatus.OK;
     }
 
-    @PutMapping("/users/{userId}")
+    @PutMapping("/{userId}")
     public User updateUserById(@PathVariable Long userId, @RequestBody User userRequest) throws NotFoundException {
         User userFromDb = userRepository.findOne(userId);
 
