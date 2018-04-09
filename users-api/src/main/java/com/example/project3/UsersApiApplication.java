@@ -18,11 +18,6 @@ import java.util.stream.Collectors;
 @RestController
 public class UsersApiApplication {
 
-	@RequestMapping("/")
-	public String home() {
-		return "USER API";
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(UsersApiApplication.class, args);
 	}
