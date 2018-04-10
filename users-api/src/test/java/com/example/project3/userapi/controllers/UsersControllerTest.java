@@ -102,7 +102,7 @@ public class UsersControllerTest {
     public void findAllUsers_success_returnsStatusOK() throws Exception {
 
         this.mockMvc
-                .perform(get("/users"))
+                .perform(get("/"))
                 .andExpect(status().isOk());
     }
 
@@ -110,14 +110,14 @@ public class UsersControllerTest {
     public void findAllUsers_success_returnAllUsersAsJSON() throws Exception {
 
         this.mockMvc
-                .perform(get("/users"))
+                .perform(get("/"))
                 .andExpect(jsonPath("$", hasSize(2)));
     }
     @Test
     public void findAllUsers_success_returnUserNameForEachUser() throws Exception {
 
         this.mockMvc
-                .perform(get("/users"))
+                .perform(get("/"))
                 .andExpect(jsonPath("$[0].userName", is("user1")));
     }
 
@@ -125,7 +125,7 @@ public class UsersControllerTest {
     public void findAllUsers_success_returnFirstNameForEachUser() throws Exception {
 
         this.mockMvc
-                .perform(get("/users"))
+                .perform(get("/"))
                 .andExpect(jsonPath("$[0].firstName", is("Nick")));
     }
 
@@ -133,14 +133,14 @@ public class UsersControllerTest {
     public void findAllUsers_success_returnLastNameForEachUser() throws Exception {
 
         this.mockMvc
-                .perform(get("/users"))
+                .perform(get("/"))
                 .andExpect(jsonPath("$[0].lastName", is("Lee")));
     }
 
     @Test
     public void findUserByUserName_success_returnStatusOK() throws Exception {
         this.mockMvc
-                .perform(get("/users/search?userName=user1"))
+                .perform(get("/search?userName=user1"))
                 .andExpect(status().isOk());
     }
 
@@ -148,7 +148,7 @@ public class UsersControllerTest {
     public void findUserByUserName_success_returnUserName() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/search?userName=user1"))
+                .perform(get("/search?userName=user1"))
                 .andExpect(jsonPath("$.userName", is("user1")));
     }
 
@@ -156,7 +156,7 @@ public class UsersControllerTest {
     public void findUserByUserName_success_returnFirstName() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/search?userName=user1"))
+                .perform(get("/search?userName=user1"))
                 .andExpect(jsonPath("$.firstName", is("Nick")));
     }
 
@@ -164,7 +164,7 @@ public class UsersControllerTest {
     public void findUserByUserName_success_returnLastName() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/search?userName=user1"))
+                .perform(get("/search?userName=user1"))
                 .andExpect(jsonPath("$.lastName", is("Lee")));
     }
 
@@ -172,7 +172,7 @@ public class UsersControllerTest {
     public void findUserByUserName_success_returnPassword() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/search?userName=user1"))
+                .perform(get("/search?userName=user1"))
                 .andExpect(jsonPath("$.password", is("password")));
     }
 
@@ -180,7 +180,7 @@ public class UsersControllerTest {
     public void findUserByUserName_success_returnNeighborhood() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/search?userName=user1"))
+                .perform(get("/search?userName=user1"))
                 .andExpect(jsonPath("$.neighborhood", is("Bronx")));
     }
 
@@ -188,7 +188,7 @@ public class UsersControllerTest {
     public void findUserByUserName_success_returnBio() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/search?userName=user1"))
+                .perform(get("/search?userName=user1"))
                 .andExpect(jsonPath("$.bio", is("I heart NY")));
     }
 
@@ -196,7 +196,7 @@ public class UsersControllerTest {
     public void findUserByUserName_failure_userNotFoundReturns404() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/search?userName=user10"))
+                .perform(get("/search?userName=user10"))
                 .andExpect(status().isNotFound());
     }
 
@@ -204,7 +204,7 @@ public class UsersControllerTest {
     public void findUserById_success_returnsStatusOK() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/1"))
+                .perform(get("/1"))
                 .andExpect(status().isOk());
     }
 
@@ -212,7 +212,7 @@ public class UsersControllerTest {
     public void findUserById_success_returnUserName() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/1"))
+                .perform(get("/1"))
                 .andExpect(jsonPath("$.userName", is("user1")));
     }
 
@@ -220,7 +220,7 @@ public class UsersControllerTest {
     public void findUserById_success_returnFirstName() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/1"))
+                .perform(get("/1"))
                 .andExpect(jsonPath("$.firstName", is("Nick")));
     }
 
@@ -228,7 +228,7 @@ public class UsersControllerTest {
     public void findUserById_success_returnLastName() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/1"))
+                .perform(get("/1"))
                 .andExpect(jsonPath("$.lastName", is("Lee")));
     }
 
@@ -236,7 +236,7 @@ public class UsersControllerTest {
     public void findUserById_failure_userNotFoundReturns404() throws Exception {
 
         this.mockMvc
-                .perform(get("/users/4"))
+                .perform(get("/4"))
                 .andExpect(status().isNotFound());
     }
 
@@ -244,14 +244,14 @@ public class UsersControllerTest {
     public void deleteUserById_success_returnsStatusOk() throws Exception {
 
         this.mockMvc
-                .perform(delete("/users/1"))
+                .perform(delete("/1"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void deleteUserById_success_deletesViaRepository() throws Exception {
 
-        this.mockMvc.perform(delete("/users/1"));
+        this.mockMvc.perform(delete("/1"));
 
         verify(mockUserRepository, times(1)).delete(1L);
     }
@@ -260,7 +260,7 @@ public class UsersControllerTest {
     public void deleteUserById_failure_userNotFoundReturns404() throws Exception {
 
         this.mockMvc
-                .perform(delete("/users/4"))
+                .perform(delete("/4"))
                 .andExpect(status().isNotFound());
     }
 
@@ -269,7 +269,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        put("/users/1")
+                        put("/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -281,7 +281,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        put("/users/1")
+                        put("/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -293,7 +293,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        put("/users/1")
+                        put("/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -305,7 +305,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        put("/users/1")
+                        put("/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -316,7 +316,7 @@ public class UsersControllerTest {
     public void updateUserById_success_returnsUpdatedPassword() throws Exception {
         this.mockMvc
                 .perform(
-                        put("/users/1")
+                        put("/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -326,7 +326,7 @@ public class UsersControllerTest {
     public void updatedUserById_success_returnUpdatedNeighborhood() throws Exception {
         this.mockMvc
                 .perform(
-                        put("/users/1")
+                        put("/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -337,7 +337,7 @@ public class UsersControllerTest {
     public void updateUserById_success_returnUpdatedBio() throws Exception {
         this.mockMvc
                 .perform(
-                        put("/users/1")
+                        put("/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString((updatedSecondUser)))
                 )
@@ -349,7 +349,7 @@ public class UsersControllerTest {
 
         this.mockMvc
                 .perform(
-                        put("/users/4")
+                        put("/4")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(updatedSecondUser))
                 )
@@ -360,7 +360,7 @@ public class UsersControllerTest {
     public void createdNewUser_success_returnStatusOk() throws Exception {
         this.mockMvc
                 .perform(
-                        post("/users")
+                        post("/")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
 
@@ -372,7 +372,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewUserName() throws Exception{
         this.mockMvc
                 .perform(
-                        post("/users")
+                        post("/")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
@@ -383,7 +383,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewFirstName() throws Exception{
         this.mockMvc
                 .perform(
-                        post("/users")
+                        post("/")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
@@ -394,7 +394,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewLastName() throws Exception{
         this.mockMvc
                 .perform(
-                        post("/users")
+                        post("/")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
@@ -405,7 +405,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewPassword() throws Exception{
         this.mockMvc
                 .perform(
-                        post("/users")
+                        post("/")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
@@ -415,7 +415,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewNeighborhood() throws Exception{
         this.mockMvc
                 .perform(
-                        post("/users")
+                        post("/")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
@@ -426,7 +426,7 @@ public class UsersControllerTest {
     public void createNewUser_success_returnNewBio() throws Exception{
         this.mockMvc
                 .perform(
-                        post("/users")
+                        post("/")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonObjectMapper.writeValueAsString(newUser))
                 )
