@@ -37,36 +37,15 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	testCompile 'io.rest-assured:rest-assured:3.0.6'
-	testCompile 'org.seleniumhq.selenium:selenium-java:3.9.1'
-	testCompile 'org.seleniumhq.selenium:selenium-api:3.9.1'
-	testCompile 'org.seleniumhq.selenium:selenium-remote-driver:3.9.1'
-	testCompile 'org.seleniumhq.selenium:selenium-chrome-driver:3.9.1'
-	testCompile 'org.seleniumhq.selenium:selenium-support:3.9.1'
-	testCompile 'com.codeborne:selenide:4.10.01'
 	runtime 'org.postgresql:postgresql'
 	runtime 'org.springframework.boot:spring-boot-devtools'
 	compile 'org.springframework.cloud:spring-cloud-starter-eureka'
 
 }
 
-task waitForAPIs(type: Exec) {
-	commandLine './wait-for-users-api.sh','http://localhost:8080/'
-}
 
 test {
 	dependsOn cleanTest
-	dependsOn waitForAPIs
-	testLogging {
-		exceptionFormat "full"
-		events "skipped", "passed", "failed"
-		displayGranularity 2
-	}
-}
-
-
-task allTests(type: Test) {
-	dependsOn cleanTest
-	dependsOn waitForAPIs
 	testLogging {
 		exceptionFormat "full"
 		events "skipped", "passed", "failed"
@@ -79,4 +58,3 @@ dockerCompose {
 }
 
 dockerCompose.isRequiredBy(test)
-dockerCompose.isRequiredBy(allTests)
