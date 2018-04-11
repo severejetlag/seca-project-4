@@ -2,7 +2,7 @@ package com.example.postsapi.models;
 
 import lombok.*;
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter
@@ -26,17 +26,25 @@ public class Post {
     private String postBody;
 
     @Column(name = "DATE_CREATED")
-    private Date dateCreated;
+    private LocalDateTime dateCreated;
 
     @Column(name = "APPROVED")
     private Boolean approved;
 
-    public Post(String title,  String firstName, String lastName, String postBody, Date dateCreated, Boolean approved) {
+    public Post(String title,  String firstName, String lastName, String postBody, LocalDateTime dateCreated, Boolean approved) {
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
         this.postBody = postBody;
         this.dateCreated = dateCreated;
         this.approved = approved; 
+    }
+
+    public Post(String title,  String firstName, String lastName, String postBody,  Boolean approved) {
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.postBody = postBody;
+        this.approved = approved;
     }
 }
