@@ -24,3 +24,9 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+cache/
+*/cache
+
+node_modules/
+*/node_modules
