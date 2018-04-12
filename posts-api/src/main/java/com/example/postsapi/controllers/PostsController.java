@@ -17,9 +17,15 @@ public class PostsController {
     private PostRepository postRepository;
 
     @GetMapping("/")
-    public Iterable<Post> findAllUsers() {
+    public Iterable<Post> findAllApprovedPosts(){
+        return postRepository.findAllByApproved(true);
+    }
+
+    @GetMapping("/admin")
+    public Iterable<Post> findAllPosts() {
         return postRepository.findAll();
     }
+
 
     
 }
