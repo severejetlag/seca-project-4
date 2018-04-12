@@ -5,5 +5,6 @@ create table POSTS (
     LAST_NAME varchar(100),
     POST_BODY varchar NOT NULL,
     DATE_CREATED timestamptz NOT NULL DEFAULT now(),
-    APPROVED boolean NOT NULL DEFAULT false
+    APPROVED boolean NOT NULL DEFAULT false,
+    VERIFIED boolean NOT NULL DEFAULT false
 );
