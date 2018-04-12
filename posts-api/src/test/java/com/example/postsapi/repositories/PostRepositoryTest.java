@@ -37,19 +37,21 @@ public class PostRepositoryTest {
                 "Coming to NYC",
                 "Nick",
                 "Lee",
+                "nhl1013@gmail.com",
                 "If you are coming to NYC, these are the things you should know!",
-                today,
+                true,
                 true
-        );
+                );
 
         Post secondPost = new Post(
                 "Local Townhall in Queens",
                 "Lick",
                 "Nee",
+                "severejetlag@gmail.com",
                 "There will be a local townhall meeting this evening in Queens",
-                today,
+                true,
                 true
-        );
+                );
 
         entityManager.persist(firstPost);
         entityManager.persist(secondPost);
