@@ -91,7 +91,7 @@ public class PostsControllerTest {
         given(mockPostRepository.findOne(1L)).willReturn(firstPost);
         given(mockPostRepository.findOne(4L)).willReturn(null);
 
-        // Mock out Delete to return EmptyResultDataAccessException for missing user with ID of 4
+        // Mock out Delete to return EmptyResultDataAccessException for missing post with ID of 4
         doAnswer(invocation -> {
             throw new EmptyResultDataAccessException("oh no!", 1234);
         }).when(mockPostRepository).delete(4L);
@@ -99,5 +99,44 @@ public class PostsControllerTest {
         given(mockPostRepository.save(updatedSecondPost)).willReturn(updatedSecondPost);
         given(mockPostRepository.save(newPost)).willReturn((newPost));
 
+    }
+
+    @Test
+    public void findAllPosts_success_returnsStatusOK() throws Exception {
+
+        this.mockMvc
+                .perform(get("/"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findAllPosts_success_returnAllPostsAsJSON() throws Exception {
+
+        this.mockMvc
+                .perform(get("/"))
+                .andExpect(jsonPath("$", hasSize(2)));
+    }
+    @Test
+    public void findAllPosts_success_returnPostNameForEachPost() throws Exception {
+
+        this.mockMvc
+                .perform(get("/"))
+                .andExpect(jsonPath("$[0].title", is("Coming to NYC")));
+    }
+
+    @Test
+    public void findAllPosts_success_returnFirstNameForEachPost() throws Exception {
+
+        this.mockMvc
+                .perform(get("/"))
+                .andExpect(jsonPath("$[0].firstName", is("Nick")));
+    }
+
+    @Test
+    public void findAllPosts_success_returnLastNameForEachPost() throws Exception {
+
+        this.mockMvc
+                .perform(get("/"))
+                .andExpect(jsonPath("$[0].lastName", is("Lee")));
     }
 }
