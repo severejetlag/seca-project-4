@@ -108,7 +108,7 @@ public class PostsControllerTest {
     public void findAllPosts_success_returnsStatusOK() throws Exception {
 
         this.mockMvc
-                .perform(get("/admin"))
+                .perform(get("/all"))
                 .andExpect(status().isOk());
     }
 
@@ -116,14 +116,14 @@ public class PostsControllerTest {
     public void findAllPosts_success_returnAllPostsAsJSON() throws Exception {
 
         this.mockMvc
-                .perform(get("/admin"))
+                .perform(get("/all"))
                 .andExpect(jsonPath("$", hasSize(2)));
     }
     @Test
     public void findAllPosts_success_returnPostNameForEachPost() throws Exception {
 
         this.mockMvc
-                .perform(get("/admin"))
+                .perform(get("/all"))
                 .andExpect(jsonPath("$[0].title", is("Coming to NYC")));
     }
 
@@ -131,7 +131,7 @@ public class PostsControllerTest {
     public void findAllPosts_success_returnFirstNameForEachPost() throws Exception {
 
         this.mockMvc
-                .perform(get("/admin"))
+                .perform(get("/all"))
                 .andExpect(jsonPath("$[0].firstName", is("Nick")));
     }
 
@@ -139,7 +139,7 @@ public class PostsControllerTest {
     public void findAllPosts_success_returnLastNameForEachPost() throws Exception {
 
         this.mockMvc
-                .perform(get("/admin"))
+                .perform(get("/all"))
                 .andExpect(jsonPath("$[0].lastName", is("Lee")));
     }
 
@@ -147,7 +147,7 @@ public class PostsControllerTest {
     public void findAllApprovedPosts_success_returnsStatusOK() throws Exception {
 
         this.mockMvc
-                .perform(get("/"))
+                .perform(get("/approved"))
                 .andExpect(status().isOk());
     }
 
@@ -155,14 +155,14 @@ public class PostsControllerTest {
     public void findAllApprovedPosts_success_returnAllPostsAsJSON() throws Exception {
 
         this.mockMvc
-                .perform(get("/"))
+                .perform(get("/approved"))
                 .andExpect(jsonPath("$", hasSize(1)));
     }
     @Test
     public void findAllApprovedPosts_success_returnPostNameForEachPost() throws Exception {
 
         this.mockMvc
-                .perform(get("/"))
+                .perform(get("/approved"))
                 .andExpect(jsonPath("$[0].title", is("Coming to NYC")));
     }
 
@@ -170,7 +170,7 @@ public class PostsControllerTest {
     public void findAllApprovedPosts_success_returnFirstNameForEachPost() throws Exception {
 
         this.mockMvc
-                .perform(get("/"))
+                .perform(get("/approved"))
                 .andExpect(jsonPath("$[0].firstName", is("Nick")));
     }
 
@@ -178,7 +178,7 @@ public class PostsControllerTest {
     public void findAllApprovedPosts_success_returnLastNameForEachPost() throws Exception {
 
         this.mockMvc
-                .perform(get("/"))
+                .perform(get("/approved"))
                 .andExpect(jsonPath("$[0].lastName", is("Lee")));
     }
 
@@ -186,7 +186,7 @@ public class PostsControllerTest {
     public void findAllApprovedPosts_success_returnApprovedForEachPost() throws Exception {
 
         this.mockMvc
-                .perform(get("/"))
+                .perform(get("/approved"))
                 .andExpect(jsonPath("$[0].approved", is(true)));
     }
 }

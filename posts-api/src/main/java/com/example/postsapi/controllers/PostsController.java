@@ -16,16 +16,19 @@ public class PostsController {
     @Autowired
     private PostRepository postRepository;
 
-    @GetMapping("/")
+    @GetMapping("/approved")
     public Iterable<Post> findAllApprovedPosts(){
         return postRepository.findAllByApproved(true);
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/all")
     public Iterable<Post> findAllPosts() {
         return postRepository.findAll();
     }
 
-
+    @GetMapping("/unapproved")
+    public Iterable<Post> findAllUnapprovedPosts(){
+        return postRepository.findAllByApproved(false);
+    }
     
 }
