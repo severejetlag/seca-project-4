@@ -16,5 +16,10 @@ public class PostsController {
     @Autowired
     private PostRepository postRepository;
 
+    @GetMapping("/")
+    public Iterable<Post> findAllUsers() {
+        return postRepository.findAll();
+    }
+
     
 }
