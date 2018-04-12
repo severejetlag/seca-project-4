@@ -22,6 +22,9 @@ public class Post {
     @Column(name = "LAST_NAME")
     private String lastName;
 
+    @Column(name = "CONTACT_DETAILS")
+    private String contactDetails;
+
     @Column(name = "POST_BODY")
     private String postBody;
 
@@ -31,20 +34,28 @@ public class Post {
     @Column(name = "APPROVED")
     private Boolean approved;
 
-    public Post(String title,  String firstName, String lastName, String postBody, LocalDateTime dateCreated, Boolean approved) {
+    @Column(name = "VERIFED")
+    private Boolean verified;
+
+    public Post(String title,  String firstName, String lastName, String contactDetails, String postBody, LocalDateTime dateCreated, Boolean approved, Boolean verified) {
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.contactDetails = contactDetails;
         this.postBody = postBody;
         this.dateCreated = dateCreated;
-        this.approved = approved; 
+        this.approved = approved;
+        this.verified = verified;
+
     }
 
-    public Post(String title,  String firstName, String lastName, String postBody,  Boolean approved) {
+    public Post(String title,  String firstName, String lastName, String contactDetails, String postBody,  Boolean approved, Boolean verified) {
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.contactDetails = contactDetails;
         this.postBody = postBody;
         this.approved = approved;
+        this.verified = verified;
     }
 }
