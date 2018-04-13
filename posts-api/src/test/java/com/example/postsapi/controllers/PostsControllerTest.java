@@ -189,4 +189,92 @@ public class PostsControllerTest {
                 .perform(get("/approved"))
                 .andExpect(jsonPath("$[0].approved", is(true)));
     }
+
+    @Test
+    public void createdNewPost_success_returnStatusOk() throws Exception {
+        this.mockMvc
+                .perform(
+                        post("/unapproved")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newPost))
+
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void createNewPost_success_returnNewTitle() throws Exception{
+        this.mockMvc
+                .perform(
+                        post("/unapproved")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newPost))
+                )
+                .andExpect(jsonPath("$.title", is("new test post")));
+    }
+
+    @Test
+    public void createNewPost_success_returnNewFirstName() throws Exception{
+        this.mockMvc
+                .perform(
+                        post("/unapproved")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newPost))
+                )
+                .andExpect(jsonPath("$.firstName", is("new first name")));
+    }
+
+    @Test
+    public void createNewPost_success_returnNewLastName() throws Exception{
+        this.mockMvc
+                .perform(
+                        post("/unapproved")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newPost))
+                )
+                .andExpect(jsonPath("$.lastName", is("new last name")));
+    }
+
+    @Test
+    public void createNewPost_success_returnNewContactDetails() throws Exception{
+        this.mockMvc
+                .perform(
+                        post("/unapproved")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newPost))
+                )
+                .andExpect(jsonPath("$.contactDetails", is("new email")));
+    }
+    @Test
+    public void createNewPost_success_returnNewPostBody() throws Exception{
+        this.mockMvc
+                .perform(
+                        post("/unapproved")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newPost))
+                )
+                .andExpect(jsonPath("$.postBody", is("new post body")));
+    }
+
+    @Test
+    public void createNewPost_success_returnNewApproved() throws Exception{
+        this.mockMvc
+                .perform(
+                        post("/unapproved")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newPost))
+                )
+                .andExpect(jsonPath("$.approved", is(false)));
+    }
+
+    @Test
+    public void createNewPost_success_returnNewVerified() throws Exception{
+        this.mockMvc
+                .perform(
+                        post("/unapproved")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(newPost))
+                )
+                .andExpect(jsonPath("$.verified", is(false)));
+    }
 }
