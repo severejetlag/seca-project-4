@@ -11,6 +11,7 @@ const PostList = props => {
         post={post}
         key={index}
         index={index}
+        toggleApproval={props.toggleApproval}
       />
     )
   })
@@ -18,6 +19,8 @@ const PostList = props => {
     <ul className='list-group list-group-flush' id='post-list'>
       {
         props.isApprovalPage ?
+        ''
+        :
         <li className='post list-group-item'>
           <PostNewForm
             currentUser={props.currentUser}
@@ -25,8 +28,6 @@ const PostList = props => {
             createPost={props.createPost}
           />
         </li>
-        :
-        ''
       }
       {PostComponents}
     </ul>
