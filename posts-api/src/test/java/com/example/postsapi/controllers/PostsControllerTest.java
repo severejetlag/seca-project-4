@@ -260,5 +260,27 @@ public class PostsControllerTest {
                 .andExpect(jsonPath("$.postBody", is("new post body")));
     }
 
+    @Test
+    public void deleteUserById_success_returnsStatusOk() throws Exception {
 
+        this.mockMvc
+                .perform(delete("/all/1"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteUserById_success_deletesViaRepository() throws Exception {
+
+        this.mockMvc.perform(delete("/all/1"));
+
+        verify(mockPostRepository, times(1)).delete(1L);
+    }
+
+    @Test
+    public void deleteUserById_failure_userNotFoundReturns404() throws Exception {
+
+        this.mockMvc
+                .perform(delete("/all/4"))
+                .andExpect(status().isNotFound());
+    }
 }
