@@ -76,12 +76,12 @@ class PostsPage extends Component {
     return(
       <main id='posts-container'>
         <Nav/>
-        <h1>Approved Posts:</h1>
         {
           this.props.adminUser ?
           <Link id='admin-approval-link' className='btn btn-info' to='/approvals'>Approvals Portal</Link>
           : ''
         }
+        <h1>Approved Posts:</h1>
         <PostList
           currentUser={this.props.currentUser}
           posts={this.state.posts}
