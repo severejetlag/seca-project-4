@@ -1,4 +1,6 @@
 import React from 'react'
+import PostDeleteButton from './PostDeleteButton'
+import PostToggleApprovalButton from './PostToggleApprovalButton'
 
 const Post = props => {
   return(
@@ -11,9 +13,10 @@ const Post = props => {
       <p>{props.post.postBody}</p>
       {
         props.adminUser ?
-        <button className='btn btn-danger' onClick={() => props.deletePost(props.post.id, props.index)}>
-          Delete Post
-        </button>
+        <div>
+          <PostToggleApprovalButton id={props.post.id} index={props.index} approved={props.post.approved}/>
+          <PostDeleteButton id={props.post.id} index={props.index} deletePost={props.deletePost}/>
+        </div>
         : ""
       }
     </li>
