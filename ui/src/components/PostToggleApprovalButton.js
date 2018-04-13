@@ -6,11 +6,11 @@ const PostToggleApprovalButton = props =>{
         {
           props.post.approved ?
           <button className='btn btn-danger' onClick={() => props.toggleApproval(props.id, props.index, props.post)}>
-            Unapprove
+            Unapprove <i class="fas fa-thumbs-down"></i>
           </button>
           :
           <button className='btn btn-success' onClick={() => props.toggleApproval(props.id, props.index, props.post)}>
-            Approve
+            Approve <i class="fas fa-thumbs-up"></i>
           </button>
         }
     </div>

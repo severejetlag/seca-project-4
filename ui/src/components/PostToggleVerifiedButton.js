@@ -6,11 +6,11 @@ const PostToggleVerifiedButton = props =>{
         {
           props.post.verified ?
           <button className='btn btn-danger' onClick={() => props.toggleVerified(props.id, props.index, props.post)}>
-            Unverify
+            Unverify <i class="fas fa-check"></i>
           </button>
           :
           <button className='btn btn-success' onClick={() => props.toggleVerified(props.id, props.index, props.post)}>
-            Verify
+            Verify <i class="fas fa-check"></i>
           </button>
         }
     </div>
