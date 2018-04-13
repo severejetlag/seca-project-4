@@ -14,7 +14,7 @@ const Post = props => {
       {
         props.adminUser ?
         <div>
-          <PostToggleApprovalButton id={props.post.id} index={props.index} approved={props.post.approved}/>
+          <PostToggleApprovalButton id={props.post.id} index={props.index} post={props.post} toggleApproval={props.toggleApproval}/>
           <PostDeleteButton id={props.post.id} index={props.index} deletePost={props.deletePost}/>
         </div>
         : ""

@@ -4,12 +4,12 @@ const PostToggleApprovalButton = props =>{
   return(
     <div>
         {
-          props.approved ?
-          <button className='btn btn-danger'>
+          props.post.approved ?
+          <button className='btn btn-danger' onClick={() => props.toggleApproval(props.id, props.index, props.post)}>
             Unapprove
           </button>
           :
-          <button className='btn btn-success'>
+          <button className='btn btn-success' onClick={() => props.toggleApproval(props.id, props.index, props.post)}>
             Approve
           </button>
         }
