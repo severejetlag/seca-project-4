@@ -16,13 +16,18 @@ const PostList = props => {
   })
   return(
     <ul className='list-group list-group-flush' id='post-list'>
-      <li className='post list-group-item'>
-        <PostNewForm
-          currentUser={props.currentUser}
-          hasCurrentUser={props.hasCurrentUser}
-          createPost={props.createPost}
-        />
-      </li>
+      {
+        props.isApprovalPage ?
+        <li className='post list-group-item'>
+          <PostNewForm
+            currentUser={props.currentUser}
+            hasCurrentUser={props.hasCurrentUser}
+            createPost={props.createPost}
+          />
+        </li>
+        :
+        ''
+      }
       {PostComponents}
     </ul>
   )
