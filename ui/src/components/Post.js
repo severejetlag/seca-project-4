@@ -11,7 +11,7 @@ const Post = props => {
       <p>{props.post.postBody}</p>
       {
         props.adminUser ?
-        <button className='btn btn-danger'>
+        <button className='btn btn-danger' onClick={() => props.deletePost(props.post.id, props.index)}>
           Delete Post
         </button>
         : ""

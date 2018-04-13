@@ -26,6 +26,20 @@ class PostsPage extends Component {
     }
   }
 
+  deletePost = async (postId, index) => {
+    try {
+        await axios.delete(`${process.env.REACT_APP_USERS_API}/posts/all/${postId}`)
+
+        const updatedPostList = [...this.state.posts]
+        updatedPostList.splice(index, 1)
+        this.setState({posts: updatedPostList})
+
+    } catch (error) {
+        console.log(`Error deleting post with ID of ${postId}`)
+        console.log(error)
+    }
+  }
+
   render(){
     return(
       <main>
@@ -42,6 +56,7 @@ class PostsPage extends Component {
           adminUser={this.props.adminUser}
           hasCurrentUser={this.props.hasCurrentUser}
           createPost={this.createPost}
+          deletePost={this.deletePost}
         />
       </main>
     )

@@ -7,6 +7,7 @@ const PostList = props => {
     return (
       <Post
         adminUser={props.adminUser}
+        deletePost={props.deletePost}
         post={post}
         key={index}
         index={index}
