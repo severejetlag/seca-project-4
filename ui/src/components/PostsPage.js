@@ -74,12 +74,12 @@ class PostsPage extends Component {
 
   render(){
     return(
-      <main>
+      <main id='posts-container'>
         <Nav/>
         <h1>Approved Posts:</h1>
         {
           this.props.adminUser ?
-          <Link className='btn btn-info' to='/approvals'>Approvals Portal</Link>
+          <Link id='admin-approval-link' className='btn btn-info' to='/approvals'>Approvals Portal</Link>
           : ''
         }
         <PostList
