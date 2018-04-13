@@ -36,7 +36,7 @@ public class Post {
     private Boolean verified;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATE_CREATED")
+    @Column(name = "DATE_CREATED", insertable = false)
     private Calendar dateCreated;
 
     public Post(String title, String firstName, String lastName, String contactDetails, String postBody) {
