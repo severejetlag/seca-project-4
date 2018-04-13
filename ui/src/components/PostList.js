@@ -13,7 +13,7 @@ const PostList = props => {
     )
   })
   return(
-    <ul>
+    <ul className='list-group list-group-flush' id='post-list'>
       {PostComponents}
     </ul>
   )

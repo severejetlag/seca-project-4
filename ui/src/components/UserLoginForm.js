@@ -35,21 +35,28 @@ class UserLoginForm extends Component {
       <div>
         <h2>Enter Your Username To Login</h2>
 
-        <form onSubmit={this.handleSubmit} id='login-form'>
-          <div>
-            <label htmlFor="userName">Username</label>
-            <input
-              id='userName-input'
-              name="userName"
-              type="text"
-              onChange={this.handleChange} />
+        <form className='form-group' onSubmit={this.handleSubmit} id='login-form'>
+          <div className="form-row">
+            <div className='form-group col-md-6'>
+              <label htmlFor="userName">Username</label>
+              <input
+                className='form-control'
+                id='userName-input'
+                name="userName"
+                type="text"
+                onChange={this.handleChange} />
+              </div>
           </div>
-
-          <label htmlFor="isAdmin">Check for admin functionality</label>
-          <input type="checkbox" id="admin-checkbox" name="isAdmin"  onClick={this.handleAdminToggle}/>
-
-          <div>
-            <input id='login-submit' type='submit' value='Login'/>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <input className='form-check-input' type="checkbox" id="admin-checkbox" name="isAdmin"  onClick={this.handleAdminToggle}/>
+              <label className='form-check-label' htmlFor="isAdmin">Check for admin functionality</label>
+            </div>
+          </div>
+          <div className="form-row">
+            <div className='form-group'>
+              <input className='btn btn-primary' id='login-submit' type='submit' value='Login'/>
+            </div>
           </div>
         </form>
 

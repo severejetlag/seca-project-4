@@ -4,11 +4,23 @@ import {Link} from 'react-router-dom';
 const Nav = props => {
   return(
     <nav id='main-nav'>
-      <Link to='/'>Posts</Link> | 
-      <Link to='/login'>Login</Link> |
-      <Link to='/signup'>Signup</Link> |
-      <Link to='/userslist'>Users</Link> |
-      <Link to='/profile'>Profile</Link>
+      <ul className="nav justify-content-end">
+        <li className="nav-item">
+          <Link className='nav-link' to='/'>Posts</Link>
+        </li>
+        <li className="nav-item">
+          <Link className='nav-link' to='/login'>Login</Link>
+        </li>
+        <li className="nav-item">
+          <Link className='nav-link' to='/signup'>Signup</Link>
+        </li>
+        <li className="nav-item">
+          <Link className='nav-link' to='/userslist'>Users</Link>
+        </li>
+        <li className="nav-item">
+          <Link className='nav-link' to='/profile'>Profile</Link>
+        </li>
+      </ul>
     </nav>
   )
 }

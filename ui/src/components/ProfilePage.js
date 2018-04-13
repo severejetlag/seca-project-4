@@ -30,8 +30,7 @@ class ProfilePage extends Component{
       <main id="profile-container">
         <Nav/>
         <h1>Profile Page</h1>
-        <button id='edit-profile-button' onClick={this.toggleProfileEdit}>Edit Profile</button>
-        <button id='delete-profile-button' onClick={this.handleDeleteClick}>Delete Profile</button>
+        <button className='btn btn-info' id='edit-profile-button' onClick={this.toggleProfileEdit}>Edit Profile</button> | <button className='btn btn-danger' id='delete-profile-button' onClick={this.handleDeleteClick}>Delete Profile</button>
         {
           this.state.editIsActive ?
           <ProfilePageEditForm

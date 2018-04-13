@@ -14,7 +14,7 @@ const UserList = props => {
     )
   })
   return(
-    <ul id='user-list'>
+    <ul className='list-group list-group-flush' id='user-list'>
       {userComponents}
     </ul>
   )
