@@ -12,6 +12,7 @@ const PostList = props => {
         key={index}
         index={index}
         toggleApproval={props.toggleApproval}
+        toggleVerified={props.toggleVerified}
       />
     )
   })

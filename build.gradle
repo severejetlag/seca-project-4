@@ -70,11 +70,16 @@ task runUsersAPITests(type: Exec) {
 	commandLine './gradlew', 'test'
 }
 
+task runPostsAPITests(type: Exec) {
+	workingDir './posts-api'
+	commandLine './gradlew', 'test'
+}
+
 task allTests(type: Test) {
 	dependsOn cleanTest
 	dependsOn waitForAPIs
 	dependsOn runUsersAPITests
-
+	dependsOn runPostsAPITests
 	testLogging {
 		exceptionFormat "full"
 		events "skipped", "passed", "failed"

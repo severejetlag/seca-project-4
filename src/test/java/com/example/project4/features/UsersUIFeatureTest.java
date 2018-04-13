@@ -68,6 +68,7 @@ public class UsersUIFeatureTest {
         open("http://localhost:3000");
 
         // Login
+        $("a[href='/login']").click();
         WebElement login = $(By.name("userName"));
         login.sendKeys("user1");
         login.submit();
@@ -81,6 +82,7 @@ public class UsersUIFeatureTest {
         refresh();
 
         // Login again
+        $("a[href='/login']").click();
         login.sendKeys("user1");
         $("#admin-checkbox").click();
         login.submit();
@@ -106,6 +108,7 @@ public class UsersUIFeatureTest {
 
         // Refresh page to check for persistence
         refresh();
+        $("a[href='/login']").click();
         login.sendKeys("updateduser1");
         login.submit();
 

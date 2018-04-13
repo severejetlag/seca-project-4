@@ -1,6 +1,7 @@
 import React from 'react'
 import PostDeleteButton from './PostDeleteButton'
 import PostToggleApprovalButton from './PostToggleApprovalButton'
+import PostToggleVerifiedButton from './PostToggleVerifiedButton'
 
 const Post = props => {
   return(
@@ -15,6 +16,7 @@ const Post = props => {
         props.adminUser ?
         <div>
           <PostToggleApprovalButton id={props.post.id} index={props.index} post={props.post} toggleApproval={props.toggleApproval}/>
+          <PostToggleVerifiedButton id={props.post.id} index={props.index} post={props.post} toggleVerified={props.toggleVerified}/>
           <PostDeleteButton id={props.post.id} index={props.index} deletePost={props.deletePost}/>
         </div>
         : ""

@@ -56,6 +56,22 @@ class PostsPage extends Component {
     }
   }
 
+  toggleVerified = async (postId,index,post) => {
+    try{
+
+      post.verified = !post.verified
+      await axios.put(`${process.env.REACT_APP_USERS_API}/posts/all/${postId}`, post)
+
+      const updatedPostList = [...this.state.posts]
+      updatedPostList[index] = post
+      this.setState({posts: updatedPostList})
+
+    }catch(error){
+      console.log(`Error updating post with ID of ${postId}`)
+      console.log(error)
+    }
+  }
+
   render(){
     return(
       <main>
@@ -74,6 +90,7 @@ class PostsPage extends Component {
           createPost={this.createPost}
           deletePost={this.deletePost}
           toggleApproval={this.toggleApproval}
+          toggleVerified={this.toggleVerified}
         />
       </main>
     )
