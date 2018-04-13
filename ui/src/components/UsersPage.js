@@ -37,7 +37,7 @@ class UsersPage extends Component{
     // Redirect from Stack Overflow
     //https://stackoverflow.com/questions/43230194/how-to-use-redirect-in-the-new-react-router-dom-of-reactjs
     if(!this.props.hasCurrentUser){
-      return <Redirect to='/'/>
+      return <Redirect to='/login'/>
     }
     return(
       <main id='users-container'>
