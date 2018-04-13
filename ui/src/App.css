@@ -1,5 +1,5 @@
 .container{
-  padding: 40px 0 0 0; 
+  padding: 40px 0 0 0;
   width: 80%;
   margin: 0px auto;
 }
@@ -31,4 +31,49 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+#admin-approval-link{
+  float: right;
+  display: block;
+}
+.clear{
+  clear: both;
+}
+.cf{
+  clear: both;
+}
+
+.cf:after{
+  display: table-cell;
+  content: '';
+}
+
+.post-title-container{
+
+}
+
+.verified-check{
+  color: #28a745;
+  display: block;
+  float: right;
+}
+
+.post-details-container{
+
+
+}
+
+.post-details-container h3{
+  font-size: 1.25em;
+
+}
+
+.post-controls{
+  float: right;
+}
+
+.post-controls div{
+  float: left;
+  margin: 10px 5px;
 }

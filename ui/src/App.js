@@ -7,6 +7,8 @@ import Signup from './components/Signup'
 import ProfilePage from './components/ProfilePage'
 import PostsPage from './components/PostsPage'
 import ApprovalsPage from './components/ApprovalsPage'
+import './App.css';
+
 
 class App extends Component {
   state = {
