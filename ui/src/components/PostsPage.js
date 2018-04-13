@@ -40,6 +40,22 @@ class PostsPage extends Component {
     }
   }
 
+  toggleApproval = async (postId,index,post) => {
+    try{
+
+      post.approved = !post.approved
+      await axios.put(`${process.env.REACT_APP_USERS_API}/posts/all/${postId}`, post)
+
+      const updatedPostList = [...this.state.posts]
+      updatedPostList.splice(index, 1)
+      this.setState({posts: updatedPostList})
+
+    }catch(error){
+      console.log(`Error updating post with ID of ${postId}`)
+      console.log(error)
+    }
+  }
+
   render(){
     return(
       <main>
@@ -57,6 +73,7 @@ class PostsPage extends Component {
           hasCurrentUser={this.props.hasCurrentUser}
           createPost={this.createPost}
           deletePost={this.deletePost}
+          toggleApproval={this.toggleApproval}
         />
       </main>
     )
