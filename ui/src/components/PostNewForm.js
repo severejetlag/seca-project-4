@@ -4,6 +4,18 @@ class PostNewForm extends Component{
   state = {
     newPost:{}
   }
+  async componentDidMount() {
+    if(this.props.hasCurrentUser){
+      const firstName = document.getElementById('firstName-input').value
+      const lastName = document.getElementById('lastName-input').value
+      this.setState({
+        newPost:{
+          firstName,
+          lastName
+        }
+      })
+    }
+  }
   handleChange = (event) => {
     const attributeToChange = event.target.name
     const newValue = event.target.value
