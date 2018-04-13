@@ -36,5 +36,26 @@ public class PostsController {
         return postRepository.save(postRequest);
     }
 
+    @DeleteMapping("/all/{postId}")
+    public HttpStatus deleteUserById(@PathVariable Long postId) throws EmptyResultDataAccessException {
+        postRepository.delete(postId);
+        return HttpStatus.OK;
+    }
 
+    // EXCEPTION HANDLERS
+    @ExceptionHandler
+    void handleUserNotFound(
+            NotFoundException exception,
+            HttpServletResponse response) throws IOException {
+
+        response.sendError(HttpStatus.NOT_FOUND.value());
+    }
+
+    @ExceptionHandler
+    void handleDeleteNotFoundException(
+            EmptyResultDataAccessException exception,
+            HttpServletResponse response) throws IOException {
+
+        response.sendError(HttpStatus.NOT_FOUND.value());
+    }
 }
