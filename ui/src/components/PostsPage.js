@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PostList from './PostList'
 import axios from 'axios'
 import Nav from './Nav'
+import {Link} from 'react-router-dom';
 
 class PostsPage extends Component {
   state = {
@@ -16,13 +17,32 @@ class PostsPage extends Component {
     }
   }
 
+  createPost = async (post, index) => {
+    try {
+        const newPostResponse = await axios.post(`${process.env.REACT_APP_USERS_API}/posts/unapproved`, post)
+    } catch(error) {
+        console.log('Error creating new User!')
+        console.log(error)
+    }
+  }
+
   render(){
     return(
       <main>
         <Nav/>
-
         <h1>Approved Posts:</h1>
-        <PostList posts={this.state.posts} adminUser={this.props.adminUser}/>
+        {
+          this.props.adminUser ?
+          <Link className='btn btn-info' to='/approvals'>Approvals Portal</Link>
+          : ''
+        }
+        <PostList
+          currentUser={this.props.currentUser}
+          posts={this.state.posts}
+          adminUser={this.props.adminUser}
+          hasCurrentUser={this.props.hasCurrentUser}
+          createPost={this.createPost}
+        />
       </main>
     )
   }
