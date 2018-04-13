@@ -261,7 +261,7 @@ public class PostsControllerTest {
     }
 
     @Test
-    public void deleteUserById_success_returnsStatusOk() throws Exception {
+    public void deletePostById_success_returnsStatusOk() throws Exception {
 
         this.mockMvc
                 .perform(delete("/all/1"))
@@ -269,7 +269,7 @@ public class PostsControllerTest {
     }
 
     @Test
-    public void deleteUserById_success_deletesViaRepository() throws Exception {
+    public void deletePostById_success_deletesViaRepository() throws Exception {
 
         this.mockMvc.perform(delete("/all/1"));
 
@@ -277,10 +277,46 @@ public class PostsControllerTest {
     }
 
     @Test
-    public void deleteUserById_failure_userNotFoundReturns404() throws Exception {
+    public void deletePostById_failure_userNotFoundReturns404() throws Exception {
 
         this.mockMvc
                 .perform(delete("/all/4"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void updatePostById_success_returnsStatusOk() throws Exception {
+
+        this.mockMvc
+                .perform(
+                        put("/all/1")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(updatedSecondPost))
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updatePostById_success_returnsUpdatedApproved() throws Exception {
+
+        this.mockMvc
+                .perform(
+                        put("/all/1")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(updatedSecondPost))
+                )
+                .andExpect(jsonPath("$.approved", is(true)));
+    }
+    
+    @Test
+    public void updatePostById_failure_userNotFoundReturns404() throws Exception {
+
+        this.mockMvc
+                .perform(
+                        put("/all/4")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(jsonObjectMapper.writeValueAsString(updatedSecondPost))
+                )
                 .andExpect(status().isNotFound());
     }
 }
