@@ -5,6 +5,7 @@ import axios from 'axios'
 import UsersPage from './components/UsersPage'
 import Signup from './components/Signup'
 import ProfilePage from './components/ProfilePage'
+import PostsPage from './components/PostsPage'
 
 class App extends Component {
   state = {
@@ -61,6 +62,12 @@ class App extends Component {
   }
 
   render() {
+    const PostsPageComponent = () => (
+      <PostsPage
+        hasCurrentUser={this.state.hasCurrentUser}
+        currentUser={this.state.currentUser}
+      />)
+
     const LoginComponent = () => (
       <Login
         hasCurrentUser={this.state.hasCurrentUser}
@@ -95,7 +102,8 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path='/' render={LoginComponent}/>
+          <Route exact path='/' render={PostsPageComponent}/>
+          <Route exact path='/login' render={LoginComponent}/>
           <Route exact path='/signup' render={SignupComponent}/>
           <Route exact path='/userslist' render={UsersPageCompoment}/>
           <Route exact path='/profile' render={ProfilePageComponent}/>
