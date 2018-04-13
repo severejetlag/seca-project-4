@@ -15,6 +15,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,6 +46,7 @@ public class PostsControllerTest {
 
     @Before
     public void setUp() {
+        Calendar today = Calendar.getInstance();
         Post firstPost = new Post(
                 "Coming to NYC",
                 "Nick",
@@ -51,7 +54,8 @@ public class PostsControllerTest {
                 "nhl1013@gmail.com",
                 "If you are coming to NYC, these are the things you should know!",
                 true,
-                true
+                true,
+                today
         );
 
         Post secondPost = new Post(
@@ -61,7 +65,8 @@ public class PostsControllerTest {
                 "severejetlag@gmail.com",
                 "There will be a local townhall meeting this evening in Queens",
                 false,
-                false
+                false,
+                today
         );
 
         updatedSecondPost = new Post(
@@ -71,7 +76,8 @@ public class PostsControllerTest {
                 "nhl1013@gmail.com",
                 "Updated Post Body",
                 true,
-                true
+                true,
+                today
         );
 
         newPost = new Post(
@@ -79,9 +85,7 @@ public class PostsControllerTest {
                 "new first name",
                 "new last name",
                 "new email",
-                "new post body",
-                false,
-                false
+                "new post body"
         );
 
         List<Post> mockPosts =
@@ -256,25 +260,5 @@ public class PostsControllerTest {
                 .andExpect(jsonPath("$.postBody", is("new post body")));
     }
 
-    @Test
-    public void createNewPost_success_returnNewApproved() throws Exception{
-        this.mockMvc
-                .perform(
-                        post("/unapproved")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(jsonObjectMapper.writeValueAsString(newPost))
-                )
-                .andExpect(jsonPath("$.approved", is(false)));
-    }
 
-    @Test
-    public void createNewPost_success_returnNewVerified() throws Exception{
-        this.mockMvc
-                .perform(
-                        post("/unapproved")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(jsonObjectMapper.writeValueAsString(newPost))
-                )
-                .andExpect(jsonPath("$.verified", is(false)));
-    }
 }

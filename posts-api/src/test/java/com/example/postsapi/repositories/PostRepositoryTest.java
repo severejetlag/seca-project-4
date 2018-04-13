@@ -11,6 +11,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -31,7 +33,7 @@ public class PostRepositoryTest {
     public void setUp() {
         postRepository.deleteAll();
 
-        LocalDateTime today = LocalDateTime.now();
+        Calendar today = Calendar.getInstance();
 
         Post firstPost = new Post(
                 "Coming to NYC",
@@ -40,7 +42,8 @@ public class PostRepositoryTest {
                 "nhl1013@gmail.com",
                 "If you are coming to NYC, these are the things you should know!",
                 true,
-                true
+                true,
+                today
                 );
 
         Post secondPost = new Post(
@@ -50,7 +53,8 @@ public class PostRepositoryTest {
                 "severejetlag@gmail.com",
                 "There will be a local townhall meeting this evening in Queens",
                 true,
-                true
+                true,
+                today
                 );
 
         entityManager.persist(firstPost);

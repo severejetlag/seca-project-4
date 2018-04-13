@@ -3,6 +3,7 @@ package com.example.postsapi.models;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 
 @Data
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter
@@ -28,13 +29,15 @@ public class Post {
     @Column(name = "POST_BODY")
     private String postBody;
 
-
-
-    @Column(name = "APPROVED")
+    @Column(name = "APPROVED", insertable=false)
     private Boolean approved;
 
-    @Column(name = "VERIFIED")
+    @Column(name = "VERIFIED", insertable=false)
     private Boolean verified;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "DATE_CREATED")
+    private Calendar dateCreated;
 
     public Post(String title, String firstName, String lastName, String contactDetails, String postBody) {
         this.title = title;
@@ -44,7 +47,7 @@ public class Post {
         this.postBody = postBody;
     }
 
-    public Post(String title,  String firstName, String lastName, String contactDetails, String postBody,  Boolean approved, Boolean verified) {
+    public Post(String title,  String firstName, String lastName, String contactDetails, String postBody,  Boolean approved, Boolean verified, Calendar dateCreated) {
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -52,5 +55,6 @@ public class Post {
         this.postBody = postBody;
         this.approved = approved;
         this.verified = verified;
+        this.dateCreated = dateCreated;
     }
 }
