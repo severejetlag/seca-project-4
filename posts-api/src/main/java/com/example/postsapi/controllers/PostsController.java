@@ -30,5 +30,11 @@ public class PostsController {
     public Iterable<Post> findAllUnapprovedPosts(){
         return postRepository.findAllByApproved(false);
     }
-    
+
+    @PostMapping("/unapproved")
+    public Post createNewUser(@RequestBody Post postRequest){
+        return postRepository.save(postRequest);
+    }
+
+
 }
