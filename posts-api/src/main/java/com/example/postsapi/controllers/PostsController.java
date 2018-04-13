@@ -32,19 +32,37 @@ public class PostsController {
     }
 
     @PostMapping("/unapproved")
-    public Post createNewUser(@RequestBody Post postRequest){
+    public Post createNewPost(@RequestBody Post postRequest){
         return postRepository.save(postRequest);
     }
 
     @DeleteMapping("/all/{postId}")
-    public HttpStatus deleteUserById(@PathVariable Long postId) throws EmptyResultDataAccessException {
+    public HttpStatus deletePostById(@PathVariable Long postId) throws EmptyResultDataAccessException {
         postRepository.delete(postId);
         return HttpStatus.OK;
     }
 
+    @PutMapping("/all/{postId}")
+    public Post updatePostById(@PathVariable Long postId, @RequestBody Post postRequest) throws NotFoundException {
+        Post postFromDb = postRepository.findOne(postId);
+
+        if (postFromDb == null) {
+            throw new NotFoundException("Post with ID of " + postId + " was not found!");
+        }
+
+        postFromDb.setTitle(postRequest.getTitle());
+        postFromDb.setFirstName(postRequest.getFirstName());
+        postFromDb.setLastName(postRequest.getLastName());
+        postFromDb.setContactDetails(postRequest.getContactDetails());
+        postFromDb.setApproved(postRequest.getApproved());
+        postFromDb.setVerified(postRequest.getVerified());
+        return postRepository.save(postFromDb);
+    }
+    
+
     // EXCEPTION HANDLERS
     @ExceptionHandler
-    void handleUserNotFound(
+    void handlePostNotFound(
             NotFoundException exception,
             HttpServletResponse response) throws IOException {
 
