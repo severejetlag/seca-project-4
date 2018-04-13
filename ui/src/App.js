@@ -6,6 +6,7 @@ import UsersPage from './components/UsersPage'
 import Signup from './components/Signup'
 import ProfilePage from './components/ProfilePage'
 import PostsPage from './components/PostsPage'
+import ApprovalsPage from './components/ApprovalsPage'
 
 class App extends Component {
   state = {
@@ -69,6 +70,14 @@ class App extends Component {
         adminUser={this.state.adminUser}
       />)
 
+    const ApprovalsPageComponent = () => (
+      <ApprovalsPage
+        hasCurrentUser={this.state.hasCurrentUser}
+        currentUser={this.state.currentUser}
+        adminUser={this.state.adminUser}
+      />)
+
+
     const LoginComponent = () => (
       <Login
         hasCurrentUser={this.state.hasCurrentUser}
@@ -108,6 +117,7 @@ class App extends Component {
           <Route exact path='/signup' render={SignupComponent}/>
           <Route exact path='/userslist' render={UsersPageCompoment}/>
           <Route exact path='/profile' render={ProfilePageComponent}/>
+          <Route exact path='/approvals' render={ApprovalsPageComponent}/>
         </Switch>
       </Router>
     );
