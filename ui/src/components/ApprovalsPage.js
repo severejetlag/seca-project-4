@@ -33,9 +33,11 @@ class ApprovalsPage extends Component{
     }
   }
 
-  toggleApproval(postId,index,post) => {
+  toggleApproval = async (postId,index,post) => {
     try{
-      await axios.update(`${process.env.REACT_APP_USERS_API}/posts/all/${postId}`, post)
+
+      post.approved = !post.approved
+      await axios.put(`${process.env.REACT_APP_USERS_API}/posts/all/${postId}`, post)
 
       const updatedPostList = [...this.state.posts]
       updatedPostList.splice(index, 1)
@@ -60,6 +62,7 @@ class ApprovalsPage extends Component{
           adminUser={this.props.adminUser}
           hasCurrentUser={this.props.hasCurrentUser}
           deletePost={this.deletePost}
+          toggleApproval={this.toggleApproval}
           currentUser={this.props.currentUser}
           isApprovalPage={this.state.isApprovalPage}
         />
