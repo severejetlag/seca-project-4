@@ -8,17 +8,13 @@ class UsersPage extends Component{
   state = {
     users: []
   }
-
-  domain = process.env.REACT_APP_SKITTLE_FLAVOR;
-
-
   async componentDidMount() {
     if(this.props.hasCurrentUser){
       try {
         const response = await axios.get(`${process.env.REACT_APP_USERS_API}/users`)
         this.setState({ users: response.data })
       } catch (error) {
-        console.log('Error retrieving ideas!')
+        console.log('Error retrieving users!')
       }
     }
   }
