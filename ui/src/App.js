@@ -66,6 +66,7 @@ class App extends Component {
       <PostsPage
         hasCurrentUser={this.state.hasCurrentUser}
         currentUser={this.state.currentUser}
+        adminUser={this.state.adminUser}
       />)
 
     const LoginComponent = () => (
